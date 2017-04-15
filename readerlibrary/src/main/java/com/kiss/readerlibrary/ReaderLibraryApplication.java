@@ -8,4 +8,5 @@ import android.app.Application;
  */
 
 public class ReaderLibraryApplication extends Application {
+
 }
