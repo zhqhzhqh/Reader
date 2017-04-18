@@ -9,6 +9,5 @@ package com.kiss.readerlibrary.storage;
  * 段
  */
 public class Paragraph {
-    public Word[] words;
-    public String name;
+    public String characters;
 }

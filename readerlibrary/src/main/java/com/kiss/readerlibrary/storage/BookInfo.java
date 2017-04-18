@@ -6,7 +6,6 @@ package com.kiss.readerlibrary.storage;
  */
 
 public class BookInfo {
-
     public String path;
 
     public String name;

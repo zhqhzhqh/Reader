@@ -5,9 +5,13 @@ package com.kiss.readerlibrary.storage;
  * @date 2017/4/12
  */
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 章
  */
 public class Chapter {
-    Paragraph[] paragraphs;
+    public List<Paragraph> paragraphs = new ArrayList<>();
+    public String name;
 }
