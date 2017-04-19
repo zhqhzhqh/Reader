@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * 章
  */
-public class Chapter {
+public final class Chapter extends Indexable {
     public List<Paragraph> paragraphs = new ArrayList<>();
     public String name;
 }

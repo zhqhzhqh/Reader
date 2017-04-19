@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * 书
  */
-public class Book {
+public final class Book {
     public List<Chapter> chapters = new ArrayList<>();
     public BookInfo bookInfo;
 

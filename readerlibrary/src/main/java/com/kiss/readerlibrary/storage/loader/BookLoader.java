@@ -6,7 +6,7 @@ import com.kiss.readerlibrary.storage.Book;
  * Created by ZhangQinghui on 2017/4/17.
  */
 
-public class BookLoader {
+public final class BookLoader {
 
     private static volatile BookLoader s;
 

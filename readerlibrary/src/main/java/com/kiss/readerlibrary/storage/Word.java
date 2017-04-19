@@ -8,7 +8,7 @@ package com.kiss.readerlibrary.storage;
 /**
  * 词
  */
-public class Word {
+public final class Word extends Indexable {
     // 字符
     char[] characters;
 }

@@ -29,8 +29,10 @@ final class BookLoaderTextImpl extends BookLoaderImpl {
                 Paragraph paragraph = new Paragraph();
                 paragraph.characters = "第" + (j + 1) + "段: "
                         + "这里是属于斗气的世界，没有花俏艳丽的魔法，有的，仅仅是繁衍到巅峰的斗气！想要知道异界的斗气在发展到巅峰之后是何种境地吗？等级制度：斗者，斗师，大斗师，斗灵，斗王，斗皇，斗宗，斗尊，斗圣，斗帝。";
+                paragraph.index = j;
                 chapter.paragraphs.add(paragraph);
             }
+            chapter.index = i;
             book.chapters.add(chapter);
         }
         return book;
