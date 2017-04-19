@@ -1,7 +1,7 @@
 package com.kiss.readerlibrary;
 
 import com.kiss.readerlibrary.storage.Book;
-import com.kiss.readerlibrary.storage.loader.BookLoader;
+import com.kiss.readerlibrary.storage.BookLoader;
 
 import org.junit.Test;
 

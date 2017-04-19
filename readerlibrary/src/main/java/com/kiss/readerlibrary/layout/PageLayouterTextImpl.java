@@ -1,7 +1,5 @@
-package com.kiss.readerlibrary.layout.layouter;
+package com.kiss.readerlibrary.layout;
 
-import com.kiss.readerlibrary.layout.Line;
-import com.kiss.readerlibrary.layout.Page;
 import com.kiss.readerlibrary.storage.Paragraph;
 import com.kiss.readerlibrary.storage.Position;
 

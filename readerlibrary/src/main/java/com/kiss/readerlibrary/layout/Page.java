@@ -8,5 +8,8 @@ import java.util.List;
  */
 
 public final class Page {
+    Page() {
+    }
+
     public List<Line> lines = new ArrayList<>();
 }

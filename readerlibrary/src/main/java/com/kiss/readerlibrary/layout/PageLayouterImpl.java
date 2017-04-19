@@ -1,11 +1,9 @@
-package com.kiss.readerlibrary.layout.layouter;
+package com.kiss.readerlibrary.layout;
 
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.text.TextPaint;
 
-import com.kiss.readerlibrary.layout.Page;
-import com.kiss.readerlibrary.layout.PageParameter;
 import com.kiss.readerlibrary.storage.Chapter;
 import com.kiss.readerlibrary.utils.PaintUtils;
 

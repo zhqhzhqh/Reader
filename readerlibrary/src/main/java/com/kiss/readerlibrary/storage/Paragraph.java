@@ -8,6 +8,10 @@ package com.kiss.readerlibrary.storage;
 /**
  * 段
  */
-public final class Paragraph extends Indexable{
+public final class Paragraph extends Indexable {
+    Paragraph() {
+
+    }
+
     public String characters;
 }

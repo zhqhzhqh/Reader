@@ -2,11 +2,13 @@ package com.kiss.readerlibrary.layout;
 
 import android.graphics.Typeface;
 
+import com.kiss.readerlibrary.utils.Singletonable;
+
 /**
  * Created by ZhangQinghui on 2017/4/18.
  */
 
-public final class PageParameter {
+public final class PageParameter implements Singletonable {
 
     private static final PageParameter ourInstance = new PageParameter();
 

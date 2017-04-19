@@ -7,6 +7,9 @@ import com.kiss.readerlibrary.storage.Position;
  */
 
 public final class Line {
+    Line() {
+    }
+
     public Position start;
     public Position end;
     public boolean isParagraghEnd = false;

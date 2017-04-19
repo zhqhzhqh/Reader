@@ -1,12 +1,12 @@
-package com.kiss.readerlibrary.storage.loader;
+package com.kiss.readerlibrary.storage;
 
-import com.kiss.readerlibrary.storage.Book;
+import com.kiss.readerlibrary.utils.Singletonable;
 
 /**
  * Created by ZhangQinghui on 2017/4/17.
  */
 
-public final class BookLoader {
+public final class BookLoader implements Singletonable {
 
     private static volatile BookLoader s;
 

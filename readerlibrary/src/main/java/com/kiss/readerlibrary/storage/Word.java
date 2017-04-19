@@ -9,6 +9,9 @@ package com.kiss.readerlibrary.storage;
  * 词
  */
 public final class Word extends Indexable {
+    Word() {
+    }
+
     // 字符
     char[] characters;
 }

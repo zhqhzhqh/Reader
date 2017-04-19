@@ -1,6 +1,4 @@
-package com.kiss.readerlibrary.storage.loader;
-
-import com.kiss.readerlibrary.storage.Book;
+package com.kiss.readerlibrary.storage;
 
 /**
  * Created by ZhangQinghui on 2017/4/17.

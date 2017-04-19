@@ -12,6 +12,9 @@ import java.util.List;
  * 章
  */
 public final class Chapter extends Indexable {
+    Chapter() {
+    }
+
     public List<Paragraph> paragraphs = new ArrayList<>();
     public String name;
 }

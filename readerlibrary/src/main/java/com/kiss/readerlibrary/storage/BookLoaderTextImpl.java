@@ -1,9 +1,4 @@
-package com.kiss.readerlibrary.storage.loader;
-
-import com.kiss.readerlibrary.storage.Book;
-import com.kiss.readerlibrary.storage.BookInfo;
-import com.kiss.readerlibrary.storage.Chapter;
-import com.kiss.readerlibrary.storage.Paragraph;
+package com.kiss.readerlibrary.storage;
 
 /**
  * Created by ZhangQinghui on 2017/4/17.

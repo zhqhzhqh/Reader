@@ -12,6 +12,10 @@ import java.util.List;
  * 书
  */
 public final class Book {
+
+    Book() {
+    }
+
     public List<Chapter> chapters = new ArrayList<>();
     public BookInfo bookInfo;
 

@@ -7,10 +7,10 @@ import android.util.Log;
 
 import com.kiss.readerlibrary.layout.Page;
 import com.kiss.readerlibrary.layout.PageParameter;
-import com.kiss.readerlibrary.layout.layouter.PageLayouter;
+import com.kiss.readerlibrary.layout.PageLayouter;
 import com.kiss.readerlibrary.storage.Book;
 import com.kiss.readerlibrary.storage.Chapter;
-import com.kiss.readerlibrary.storage.loader.BookLoader;
+import com.kiss.readerlibrary.storage.BookLoader;
 
 import org.junit.Before;
 import org.junit.Test;
