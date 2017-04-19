@@ -9,6 +9,7 @@ import android.util.Log;
 import com.kiss.readerlibrary.layout.PageParameter;
 import com.kiss.readerlibrary.utils.PaintUtils;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -19,22 +20,26 @@ import org.junit.runner.RunWith;
 @RunWith(AndroidJUnit4.class)
 public class PaintLinebreakTest {
 
+    private PageParameter parameter;
+
+    @Before
+    public void testSetup() {
+        this.parameter = PageParameter.getInstance();
+    }
+
     @Test
     public void testLinebreak() {
-        PageParameter parameter = new PageParameter();
-        PageParameter.Padding padding = new PageParameter.Padding();
+        PageParameter.Padding padding = parameter.padding;
         padding.left = 1;
         padding.top = 1;
         padding.right = 1;
         padding.bottom = 1;
-        parameter.padding = padding;
-        parameter.lineSpacing = 10;
-        parameter.paragraphSpacing = 15;
-        PageParameter.Font font = new PageParameter.Font();
+        parameter.lineSpacing = 30;
+        parameter.paragraphSpacing = 50;
+        PageParameter.Font font = parameter.font;
         font.color = Color.parseColor("#ffff00");
         font.fontSize = 30;
         font.typeface = Typeface.DEFAULT;
-        parameter.font = font;
 
         TextPaint textPaint = PaintUtils.getTextPaint(parameter);
 
@@ -43,6 +48,6 @@ public class PaintLinebreakTest {
 
         int count = textPaint.breakText(paragraph, true, 1288, widths);
 
-        Log.e("qinghui", count+"");
+        Log.e("qinghui", count + "");
     }
 }

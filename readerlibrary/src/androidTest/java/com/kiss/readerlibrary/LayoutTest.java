@@ -29,21 +29,18 @@ public class LayoutTest {
 
     @Before
     public void testSetup() {
-        parameter = new PageParameter();
-        PageParameter.Padding padding = new PageParameter.Padding();
+        parameter = PageParameter.getInstance();
+        PageParameter.Padding padding = parameter.padding;
         padding.left = 1;
         padding.top = 1;
         padding.right = 1;
         padding.bottom = 1;
-        parameter.padding = padding;
         parameter.lineSpacing = 30;
         parameter.paragraphSpacing = 50;
-        PageParameter.Font font = new PageParameter.Font();
+        PageParameter.Font font = parameter.font;
         font.color = Color.parseColor("#ffff00");
         font.fontSize = 30;
         font.typeface = Typeface.DEFAULT;
-        parameter.font = font;
-
     }
 
     @Test
