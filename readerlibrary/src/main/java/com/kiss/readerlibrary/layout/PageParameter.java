@@ -19,33 +19,55 @@ public final class PageParameter implements Singletonable {
         return ourInstance;
     }
 
+    // 宽度
+    public float width;
+
+    // 高度
+    public float height;
+
+    // Padding
+    public Padding padding = new Padding();
+
+    // 段间距
+    public float paragraphSpacing;
+
+    // 行间距
+    public float lineSpacing;
+
+    // 字体
+    public Font font = new Font();
+
+    // 滑动方式
+    public Slide slide;
+
+    /**************************************************/
     public static class Padding {
+
         Padding() {
         }
 
         public float left;
         public float right;
-        public float top;
 
+        public float top;
         public float bottom;
+
     }
 
     public static class Font {
+
         Font() {
         }
 
-        public float fontSize;
         public Typeface typeface;
 
+        public float fontSize;
+
         public int color;
+
     }
 
-    public Padding padding = new Padding();
-
-    public Font font = new Font();
-
-    public float paragraphSpacing;
-
-    public float lineSpacing;
-
+    public enum Slide {
+        SCROLL, SIDLE, EMULATE, NONE
+    }
 }

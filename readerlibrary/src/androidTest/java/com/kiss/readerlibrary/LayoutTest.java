@@ -35,6 +35,8 @@ public class LayoutTest {
         padding.top = 1;
         padding.right = 1;
         padding.bottom = 1;
+        parameter.width = 720;
+        parameter.height = 1280;
         parameter.lineSpacing = 30;
         parameter.paragraphSpacing = 50;
         PageParameter.Font font = parameter.font;
@@ -48,7 +50,7 @@ public class LayoutTest {
         Book book = BookLoader.getInstance().initBook("xxx/xxx/xxx.txt");
 
         Chapter chapter = book.chapters.get(0);
-        List<Page> pages = PageLayouter.getInstance().layout(chapter, parameter, 720, 1280);
+        List<Page> pages = PageLayouter.getInstance().layout(chapter, parameter);
 
         Log.e("qinghui", pages.toString() + pages.size());
     }

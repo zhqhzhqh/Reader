@@ -12,6 +12,10 @@ import java.util.List;
 
 final class PageLayouterTextImpl extends PageLayouterImpl {
 
+    PageLayouterTextImpl(PageParameter pageParameter) {
+        super(pageParameter);
+    }
+
     @Override
     List<Page> doLayout() {
 

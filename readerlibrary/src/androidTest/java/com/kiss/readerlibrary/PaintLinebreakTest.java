@@ -34,6 +34,8 @@ public class PaintLinebreakTest {
         padding.top = 1;
         padding.right = 1;
         padding.bottom = 1;
+        parameter.width = 720;
+        parameter.height = 1280;
         parameter.lineSpacing = 30;
         parameter.paragraphSpacing = 50;
         PageParameter.Font font = parameter.font;
@@ -46,7 +48,7 @@ public class PaintLinebreakTest {
         String paragraph = "在异界中刘枫也需要经历无数腥风血雨的洗礼。但一个人的力量是单薄的。故事讲述刘枫来到异世界后已经小有成就，但前方的路会比他想像得更加艰难。是继续独闯还是营造势力。刘枫心思紧密的开始布置。他们踏上日不落要塞，将对这里的军团翻天覆地。在狼王的地盘上，体现了傲世本领。足以震撼您的视角。但刘枫能否找到菲儿？还有那些暗处的势力？刘枫能得到再次突破吗！";
         float[] widths = new float[5];
 
-        int count = textPaint.breakText(paragraph, true, 1288, widths);
+        int count = textPaint.breakText(paragraph, true, parameter.width, widths);
 
         Log.e("qinghui", count + "");
     }

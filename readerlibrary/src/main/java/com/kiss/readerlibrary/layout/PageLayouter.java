@@ -19,8 +19,8 @@ public class PageLayouter implements Singletonable {
         return ourInstance;
     }
 
-    public List<Page> layout(Chapter chapter, PageParameter pageParameter, float width, float height) {
-        PageLayouterImpl pageLayouter = new PageLayouterTextImpl();
-        return pageLayouter.layout(chapter, pageParameter, width, height);
+    public List<Page> layout(Chapter chapter, PageParameter pageParameter) {
+        PageLayouterImpl pageLayouter = new PageLayouterTextImpl(pageParameter);
+        return pageLayouter.layout(chapter);
     }
 }
