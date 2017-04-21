@@ -46,16 +46,16 @@ final class BookViewTextLRImpl extends BookViewTextImpl {
                 // TODO: 2017/4/21  页面选择
                 int startPageIndex = 0;
 
-                PageRenderTask curPageRender = new PageRenderTask(pages.get(startPageIndex), pageTextureCache.c,
+                PageRenderTask curPageRenderTask = new PageRenderTask(pages.get(startPageIndex), pageTextureCache.c,
                         new PageRenderTaskCallback() {
                             @Override
                             public void onRender(Bitmap bitmap) {
                                 drawStatic(bitmap);
                             }
                         });
-                renderService.submit(curPageRender);
+                renderService.submit(curPageRenderTask);
 
-                final PageRenderTask nextPageRender = new PageRenderTask(pages.get(startPageIndex + 1), pageTextureCache.n,
+                final PageRenderTask nextPageRenderTask = new PageRenderTask(pages.get(startPageIndex + 1), pageTextureCache.n,
                         new PageRenderTaskCallback() {
                             @Override
                             public void onRender(Bitmap bitmap) {
@@ -65,7 +65,7 @@ final class BookViewTextLRImpl extends BookViewTextImpl {
                 postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        renderService.submit(nextPageRender);
+                        renderService.submit(nextPageRenderTask);
                     }
                 }, 500);
             }
