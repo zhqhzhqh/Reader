@@ -38,7 +38,7 @@ public final class PageParameter implements Singletonable {
     public Font font = new Font();
 
     // 滑动方式
-    public Slide slide;
+    public SlideMode slideMode;
 
     /**************************************************/
     public static class Padding {
@@ -67,7 +67,7 @@ public final class PageParameter implements Singletonable {
 
     }
 
-    public enum Slide {
+    public enum SlideMode {
         SCROLL, SIDLE, EMULATE, NONE
     }
 }

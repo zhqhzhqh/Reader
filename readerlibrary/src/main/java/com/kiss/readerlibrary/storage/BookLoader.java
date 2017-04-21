@@ -45,6 +45,5 @@ public final class BookLoader implements Singletonable {
 
     public void destoryBook() {
         book = null;
-
     }
 }

@@ -4,6 +4,7 @@ import com.kiss.readerlibrary.layout.Page;
 import com.kiss.readerlibrary.layout.PageLayouter;
 import com.kiss.readerlibrary.layout.PageParameter;
 import com.kiss.readerlibrary.storage.BookLoader;
+import com.kiss.readerlibrary.utils.Cache;
 
 import java.util.List;
 
@@ -11,28 +12,22 @@ import java.util.List;
  * Created by ZhangQinghui on 2017/4/20.
  */
 
-public class PageCache {
-
-    public List<Page> preChapter;
-
-    public List<Page> curChapter;
-
-    public List<Page> nextChapter;
+final class PageCache extends Cache<List<Page>> {
 
     /**
      * 预加载下一章
      *
      * @param chapter
      */
-    public void next(int chapter) {
+    public boolean nextChapter(int chapter) {
         List<Page> page = PageLayouter.
                 getInstance().
                 layout(BookLoader.getInstance().getBook().chapters.get(chapter), PageParameter.getInstance());
         if (page != null && page.size() > 0) {
-            preChapter = curChapter;
-            curChapter = nextChapter;
-            nextChapter = page;
+            next(page);
+            return true;
         }
+        return false;
     }
 
     /**
@@ -40,14 +35,14 @@ public class PageCache {
      *
      * @param chapter
      */
-    public void pre(int chapter) {
+    public boolean preChapter(int chapter) {
         List<Page> page = PageLayouter.
                 getInstance().
                 layout(BookLoader.getInstance().getBook().chapters.get(chapter), PageParameter.getInstance());
         if (page != null && page.size() > 0) {
-            nextChapter = curChapter;
-            curChapter = preChapter;
-            preChapter = page;
+            pre(page);
+            return true;
         }
+        return false;
     }
 }
