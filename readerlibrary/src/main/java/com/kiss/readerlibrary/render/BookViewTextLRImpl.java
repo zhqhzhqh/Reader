@@ -3,6 +3,8 @@ package com.kiss.readerlibrary.render;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Rect;
 
 import com.kiss.readerlibrary.layout.Page;
 import com.kiss.readerlibrary.layout.PageLayouter;
@@ -141,29 +143,52 @@ final class BookViewTextLRImpl extends BookViewTextImpl {
             pt.canvas = new Canvas(pt.bitmap);
             pageTexture = pt;
         }
-        drawBitmapTextureBackgroud(pageTexture.canvas);
-        drawBitmapTexturTop(pageTexture.canvas);
-        drawBitmapTextureText(pageTexture.canvas);
-        drawBitmapTexturBottom(pageTexture.canvas);
+        Canvas canvas = pageTexture.canvas;
+        drawBitmapTextureBackgroud(canvas);
+
+        canvas.save();
+        canvas.clipRect(new Rect((int) pageParameter.padding.left, (int) pageParameter.padding.top,
+                (int) (pageParameter.width - pageParameter.padding.right), (int) (pageParameter.padding.top + pageParameter.topBar.height)));
+        canvas.translate((int) pageParameter.padding.left, (int) pageParameter.padding.top);
+        drawBitmapTexturTop(canvas);
+        canvas.restore();
+
+        canvas.save();
+        canvas.clipRect(new Rect((int) pageParameter.padding.left, (int) (pageParameter.padding.top + pageParameter.topBar.height),
+                (int) (pageParameter.width - pageParameter.padding.right), (int) (pageParameter.height - pageParameter.padding.bottom - pageParameter.bottomBar.height)));
+        canvas.translate((int) pageParameter.padding.left, (int) (pageParameter.padding.top + pageParameter.topBar.height));
+        drawBitmapTextureText(canvas);
+        canvas.restore();
+
+        canvas.save();
+        canvas.clipRect(new Rect((int) pageParameter.padding.left, (int) (pageParameter.height - pageParameter.padding.bottom - pageParameter.bottomBar.height),
+                (int) (pageParameter.width - pageParameter.padding.right), (int) (pageParameter.height - pageParameter.padding.bottom)));
+        canvas.translate((int) pageParameter.padding.left, (int) (pageParameter.height - pageParameter.padding.bottom - pageParameter.bottomBar.height));
+        drawBitmapTexturBottom(canvas);
+        canvas.restore();
+
         return pageTexture.bitmap;
     }
 
-    private void drawBitmapTextureBackgroud(Canvas canvas){
-        canvas.drawARGB(255, 192, 192, 192);
+    private void drawBitmapTextureBackgroud(Canvas canvas) {
+        canvas.drawColor(Color.GRAY);
     }
 
-    private void drawBitmapTexturTop(Canvas canvas){
-
+    private void drawBitmapTexturTop(Canvas canvas) {
+        canvas.drawColor(Color.RED);
+        canvas.drawText("测试文案", pageParameter.width / 2, ((pageParameter.topBar.height - fontHeight) / 2) + fontBaseLine, textPaint);
     }
 
 
-    private void drawBitmapTextureText(Canvas canvas){
+    private void drawBitmapTextureText(Canvas canvas) {
         //XXX 画页面
-        canvas.drawText("测试画板", pageParameter.padding.left, pageParameter.padding.top + fontBaseLine, textPaint);
+        canvas.drawColor(Color.LTGRAY);
+        canvas.drawText("测试文案", pageParameter.width / 2, fontBaseLine, textPaint);
     }
 
-    private void drawBitmapTexturBottom(Canvas canvas){
-
+    private void drawBitmapTexturBottom(Canvas canvas) {
+        canvas.drawColor(Color.RED);
+        canvas.drawText("测试文案", pageParameter.width / 2, ((pageParameter.bottomBar.height - fontHeight) / 2) + fontBaseLine, textPaint);
     }
 
     /****************************************************************/

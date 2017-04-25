@@ -28,6 +28,12 @@ public final class PageParameter implements Singletonable {
     // Padding
     public Padding padding = new Padding();
 
+    // 顶部栏
+    public Bar topBar;
+
+    // 底部栏
+    public Bar bottomBar;
+
     // 段间距
     public float paragraphSpacing;
 
@@ -52,6 +58,27 @@ public final class PageParameter implements Singletonable {
         public float top;
         public float bottom;
 
+    }
+
+    public static class Bar {
+
+        public float height;
+
+        Font font;
+
+        public static Bar of(int height, Font font) {
+            Bar bar = new Bar();
+            bar.height = height;
+            bar.font = font;
+            return bar;
+        }
+
+        public static Bar of(Bar bar) {
+            Bar newBar = new Bar();
+            newBar.height = bar.height;
+            newBar.font = bar.font;
+            return newBar;
+        }
     }
 
     public static class Font {

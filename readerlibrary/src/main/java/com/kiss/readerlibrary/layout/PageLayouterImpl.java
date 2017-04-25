@@ -29,7 +29,7 @@ abstract class PageLayouterImpl {
     PageLayouterImpl(PageParameter pageParameter) {
         this.pageParameter = pageParameter;
         this.pageWidth = this.pageParameter.width - this.pageParameter.padding.left - this.pageParameter.padding.right;
-        this.pageHeight = this.pageParameter.height - this.pageParameter.padding.top - this.pageParameter.padding.bottom;
+        this.pageHeight = this.pageParameter.height - this.pageParameter.padding.top - this.pageParameter.padding.bottom - this.pageParameter.topBar.height - this.pageParameter.bottomBar.height;
         this.textPaint = PaintUtils.getTextPaint(pageParameter);
         Paint.FontMetrics fontMetrics = textPaint.getFontMetrics();
         this.fontHeight = fontMetrics.bottom - fontMetrics.top + fontMetrics.leading;

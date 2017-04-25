@@ -46,16 +46,18 @@ public final class BookTestActivity extends Activity {
         parameter.lineSpacing = 30;
         parameter.paragraphSpacing = 50;
         PageParameter.Font font = parameter.font;
-        font.color = Color.parseColor("#ff0000");
+        font.color = Color.GREEN;
         font.fontSize = 30;
         font.typeface = Typeface.DEFAULT;
+        parameter.topBar = PageParameter.Bar.of(96, font);
+        parameter.bottomBar = PageParameter.Bar.of(parameter.topBar);
         parameter.slideMode = PageParameter.SlideMode.SIDLE;
 
         Book book = BookLoader.getInstance().initBook("xxx/xxx/xxx.txt");
         BookView bookView = BookRender.getInstance().render(this, book, parameter);
 
         view.addView(bookView.asView());
-        ((TextView)findViewById(R.id.status)).setText(book.bookInfo.name);
+        ((TextView) findViewById(R.id.status)).setText(book.bookInfo.name);
     }
 
 }
