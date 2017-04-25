@@ -88,7 +88,7 @@ final class BookViewTextLRImpl extends BookViewTextImpl {
     }
 
     /**********************************************************/
-    class PagesLoaderTask implements Runnable {
+    private class PagesLoaderTask implements Runnable {
 
         private final Chapter chapter;
 
@@ -112,13 +112,13 @@ final class BookViewTextLRImpl extends BookViewTextImpl {
 
     /****************************************************************/
 
-    class PageRenderTask implements Runnable {
+    private class PageRenderTask implements Runnable {
 
         private final Page page;
         private final PageTexture pageTexture;
         private final PageRenderTaskCallback callback;
 
-        public PageRenderTask(Page page, PageTexture pageTexture, PageRenderTaskCallback callback) {
+        PageRenderTask(Page page, PageTexture pageTexture, PageRenderTaskCallback callback) {
             this.page = page;
             this.pageTexture = pageTexture;
             this.callback = callback;
