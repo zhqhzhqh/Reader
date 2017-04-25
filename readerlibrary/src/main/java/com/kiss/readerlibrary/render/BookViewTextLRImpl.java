@@ -141,14 +141,29 @@ final class BookViewTextLRImpl extends BookViewTextImpl {
             pt.canvas = new Canvas(pt.bitmap);
             pageTexture = pt;
         }
-        drawBitmapTextureImpl(pageTexture.canvas);
+        drawBitmapTextureBackgroud(pageTexture.canvas);
+        drawBitmapTexturTop(pageTexture.canvas);
+        drawBitmapTextureText(pageTexture.canvas);
+        drawBitmapTexturBottom(pageTexture.canvas);
         return pageTexture.bitmap;
     }
 
-    private void drawBitmapTextureImpl(Canvas canvas){
-        //XXX 画页面
+    private void drawBitmapTextureBackgroud(Canvas canvas){
         canvas.drawARGB(255, 192, 192, 192);
+    }
+
+    private void drawBitmapTexturTop(Canvas canvas){
+
+    }
+
+
+    private void drawBitmapTextureText(Canvas canvas){
+        //XXX 画页面
         canvas.drawText("测试画板", pageParameter.padding.left, pageParameter.padding.top + fontBaseLine, textPaint);
+    }
+
+    private void drawBitmapTexturBottom(Canvas canvas){
+
     }
 
     /****************************************************************/

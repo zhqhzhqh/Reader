@@ -30,17 +30,17 @@ public final class BookTestActivity extends Activity {
             public void run() {
                 init();
             }
-        }, 1000);
+        }, 50);
     }
 
     private void init() {
         ViewGroup view = (ViewGroup) findViewById(R.id.view_book);
         PageParameter parameter = PageParameter.getInstance();
         PageParameter.Padding padding = parameter.padding;
-        padding.left = 61;
-        padding.top = 6;
-        padding.right = 6;
-        padding.bottom = 6;
+        padding.left = 30;
+        padding.top = 30;
+        padding.right = 30;
+        padding.bottom = 30;
         parameter.width = view.getWidth();
         parameter.height = view.getHeight();
         parameter.lineSpacing = 30;
