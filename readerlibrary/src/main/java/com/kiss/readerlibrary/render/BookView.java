@@ -2,9 +2,11 @@ package com.kiss.readerlibrary.render;
 
 import android.app.Activity;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.kiss.readerlibrary.layout.PageParameter;
 import com.kiss.readerlibrary.storage.Book;
+import com.kiss.readerlibrary.storage.Position;
 
 /**
  * Created by ZhangQinghui on 2017/4/20.
@@ -26,7 +28,11 @@ public class BookView implements BookViewApi {
         this.pageParameter = pageParameter;
         bookViewImpl = this.pageParameter.slideMode == PageParameter.SlideMode.SCROLL ?
                 new BookViewTextScrollImpl(this.context) : new BookViewTextLRImpl(this.context);
-        bookViewImpl.render(this.book, this.pageParameter, null);
+        ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT);
+        bookViewImpl.setLayoutParams(layoutParams);
+        PageContext pageContext = new PageContext();
+        pageContext.start = new Position(0, 0, 0);
+        bookViewImpl.torRender(this.book, this.pageParameter, pageContext);
         return this;
     }
 

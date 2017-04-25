@@ -35,8 +35,8 @@ final class BookViewTextLRImpl extends BookViewTextImpl {
     void doRender() {
         this.pageCache.p = null;
 
-        Chapter curChapter = BookLoader.getInstance().getBook().chapters.get(this.pageContext.start.chapter);
-        PagesLoaderTask curChapterLoaderToask = new PagesLoaderTask(curChapter, new PagesLoaderCallback() {
+        Chapter curChapter = book.chapters.get(this.pageContext.start.chapter);
+        PagesLoaderTask curChapterLoaderTask = new PagesLoaderTask(curChapter, new PagesLoaderCallback() {
             @Override
             public void onLoader(List<Page> pages) {
                 BookViewTextLRImpl.this.pageCache.c = pages;
@@ -55,25 +55,25 @@ final class BookViewTextLRImpl extends BookViewTextImpl {
                         });
                 renderService.submit(curPageRenderTask);
 
-                final PageRenderTask nextPageRenderTask = new PageRenderTask(pages.get(startPageIndex + 1), pageTextureCache.n,
-                        new PageRenderTaskCallback() {
-                            @Override
-                            public void onRender(Bitmap bitmap) {
-                                pageTextureCache.n = bitmap;
-                            }
-                        });
-                postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        renderService.submit(nextPageRenderTask);
-                    }
-                }, 500);
+                //final PageRenderTask nextPageRenderTask = new PageRenderTask(pages.get(startPageIndex + 1), pageTextureCache.n,
+                //        new PageRenderTaskCallback() {
+                //            @Override
+                //            public void onRender(Bitmap bitmap) {
+                //                pageTextureCache.n = bitmap;
+                //            }
+                //        });
+                //postDelayed(new Runnable() {
+                //    @Override
+                //    public void run() {
+                //        renderService.submit(nextPageRenderTask);
+                //    }
+                //}, 1500);
             }
         });
-        layoutService.submit(curChapterLoaderToask);
+        layoutService.submit(curChapterLoaderTask);
 
         Chapter nextChapter = BookLoader.getInstance().getBook().chapters.get(this.pageContext.start.chapter + 1);
-        final PagesLoaderTask nextChapterLoaderToask = new PagesLoaderTask(nextChapter, new PagesLoaderCallback() {
+        final PagesLoaderTask nextChapterLoaderTask = new PagesLoaderTask(nextChapter, new PagesLoaderCallback() {
             @Override
             public void onLoader(List<Page> pages) {
                 BookViewTextLRImpl.this.pageCache.n = pages;
@@ -82,7 +82,7 @@ final class BookViewTextLRImpl extends BookViewTextImpl {
         postDelayed(new Runnable() {
             @Override
             public void run() {
-                layoutService.submit(nextChapterLoaderToask);
+                layoutService.submit(nextChapterLoaderTask);
             }
         }, 1000);
     }
@@ -115,18 +115,18 @@ final class BookViewTextLRImpl extends BookViewTextImpl {
     class PageRenderTask implements Runnable {
 
         private final Page page;
-        private final Bitmap bitmap;
+        private final PageTexture pageTexture;
         private final PageRenderTaskCallback callback;
 
-        public PageRenderTask(Page page, Bitmap bitmap, PageRenderTaskCallback callback) {
+        public PageRenderTask(Page page, PageTexture pageTexture, PageRenderTaskCallback callback) {
             this.page = page;
-            this.bitmap = bitmap;
+            this.pageTexture = pageTexture;
             this.callback = callback;
         }
 
         @Override
         public void run() {
-            callback.onRender(drawBitmapTexture(page, bitmap));
+            callback.onRender(drawBitmapTexture(page, pageTexture));
         }
     }
 
@@ -134,32 +134,37 @@ final class BookViewTextLRImpl extends BookViewTextImpl {
         void onRender(Bitmap bitmap);
     }
 
-    private Bitmap drawBitmapTexture(Page page, Bitmap bitmap) {
-        if (bitmap == null)
-            bitmap = Bitmap.createBitmap((int) pageParameter.width, (int) pageParameter.height, Bitmap.Config.RGB_565);
-
-        Canvas canvas = holder.lockCanvas();
-        try {
-            canvas.drawARGB(120, 255, 255, 255);
-            canvas.drawText("测试画板", pageParameter.padding.left, pageParameter.padding.top, textPaint);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            holder.unlockCanvasAndPost(canvas);
+    private Bitmap drawBitmapTexture(Page page, PageTexture pageTexture) {
+        if (pageTexture == null) {
+            PageTexture pt = new PageTexture();
+            pt.bitmap = Bitmap.createBitmap((int) pageParameter.width, (int) pageParameter.height, Bitmap.Config.RGB_565);
+            pt.canvas = new Canvas(pt.bitmap);
+            pageTexture = pt;
         }
-        return null;
+        drawBitmapTextureImpl(pageTexture.canvas);
+        return pageTexture.bitmap;
+    }
+
+    private void drawBitmapTextureImpl(Canvas canvas){
+        //XXX 画页面
+        canvas.drawARGB(255, 192, 192, 192);
+        canvas.drawText("测试画板", pageParameter.padding.left, pageParameter.padding.top + fontBaseLine, textPaint);
     }
 
     /****************************************************************/
 
     void drawStatic(Bitmap bitmap) {
-        Canvas canvas = holder.lockCanvas();
+        Canvas canvas = null;
         try {
-            canvas.drawBitmap(bitmap, 0, 0, textPaint);
+            canvas = holder.lockCanvas();
+            if (canvas != null) {
+                canvas.drawBitmap(bitmap, 0, 0, textPaint);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            holder.unlockCanvasAndPost(canvas);
+            if (canvas != null)
+                holder.unlockCanvasAndPost(canvas);
         }
     }
 

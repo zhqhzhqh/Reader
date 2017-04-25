@@ -5,6 +5,7 @@ import android.graphics.Paint;
 import android.text.TextPaint;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.ViewGroup;
 
 import com.kiss.readerlibrary.layout.PageParameter;
 import com.kiss.readerlibrary.storage.Book;
@@ -26,16 +27,20 @@ abstract class BookViewImpl extends SurfaceView implements SurfaceHolder.Callbac
 
     protected float fontHeight;
 
+    protected float fontBaseLine;
+
     protected TextPaint textPaint;
 
     public BookViewImpl(Context context) {
         super(context);
+        this.holder = getHolder();
         this.getHolder().addCallback(this);
     }
 
+
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
-        this.holder = holder;
+        doRender();
     }
 
     @Override
@@ -48,19 +53,18 @@ abstract class BookViewImpl extends SurfaceView implements SurfaceHolder.Callbac
 
     }
 
-    void render(Book book, PageParameter pageParameter, PageContext pageContext) {
+    void torRender(Book book, PageParameter pageParameter, PageContext pageContext) {
         this.book = book;
         this.pageParameter = pageParameter;
         this.pageContext = pageContext;
 
-        this.pageParameter.width = this.getMeasuredWidth();
-        this.pageParameter.height = this.getMeasuredHeight();
-
         this.textPaint = PaintUtils.getTextPaint(this.pageParameter);
         Paint.FontMetrics fontMetrics = textPaint.getFontMetrics();
+        this.fontBaseLine = -fontMetrics.top;
         this.fontHeight = fontMetrics.bottom - fontMetrics.top + fontMetrics.leading;
 
-        doRender();
+        ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams((int) this.pageParameter.width, (int) this.pageParameter.height);
+        this.setLayoutParams(layoutParams);
     }
 
     abstract void doRender();

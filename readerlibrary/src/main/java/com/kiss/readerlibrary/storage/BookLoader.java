@@ -10,7 +10,7 @@ public final class BookLoader implements Singletonable {
 
     private static volatile BookLoader s;
 
-    private static Book book;
+    private Book book;
 
     private BookLoader() {
     }
@@ -35,7 +35,8 @@ public final class BookLoader implements Singletonable {
         }
 
         BookLoaderImpl bookLoader = new BookLoaderTextImpl();
-        return bookLoader.load(path);
+        book = bookLoader.load(path);
+        return book;
     }
 
     public Book getBook() {

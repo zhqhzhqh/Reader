@@ -12,4 +12,12 @@ public final class Position {
 
     public int character;
 
+    public Position() {
+    }
+
+    public Position(int chapter, int paragraph, int character) {
+        this.chapter = chapter;
+        this.paragraph = paragraph;
+        this.character = character;
+    }
 }
