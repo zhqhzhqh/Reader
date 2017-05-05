@@ -3,7 +3,7 @@ package com.kiss.readerlibrary.utils;
 import android.graphics.Paint;
 import android.text.TextPaint;
 
-import com.kiss.readerlibrary.layout.PageParameter;
+import com.kiss.readerlibrary.core.common.PageParameter;
 
 /**
  * Created by ZhangQinghui on 2017/4/18.
