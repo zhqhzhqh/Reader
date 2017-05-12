@@ -12,9 +12,9 @@ public class MessageEvent {
     public Object data;
 
     public enum What {
-        RESOLVE_LOCAL_CATALOG_SUCCESS,
-        RESOLVE_URL_CATALOG_SUCCESS,
-        START_LOAD_CHAPTER_SUCCESS,
-        PAGE_LOAD_CHAPTER_SUCCESS
+        RESOLVE_CATALOG_SUCCESS,
+        CHAPTER_INIT_LOAD_SUCCESS,
+        CHAPTER_PAGE_INIT_LOAD_SUCCESS,
+        CHAPTER_PAGE_JUMP_LOAD_SUCCESS
     }
 }

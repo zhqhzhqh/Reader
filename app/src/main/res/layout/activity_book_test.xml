@@ -10,7 +10,7 @@
         android:gravity="center"
         android:text="status"/>
 
-    <FrameLayout
+    <com.kiss.readerlibrary.core.view.BookView
         android:id="@+id/view_book"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

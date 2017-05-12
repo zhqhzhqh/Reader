@@ -6,6 +6,7 @@ package com.kiss.readerlibrary.core.common;
  */
 
 public enum LoadChapterType {
-    START,
-    PAGE
+    CHAPTER_INIT,
+    PAGE_INIT,
+    PAGE_JUMP
 }

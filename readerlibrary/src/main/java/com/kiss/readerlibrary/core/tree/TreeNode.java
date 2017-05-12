@@ -35,6 +35,11 @@ public class TreeNode<P, E extends Brother, C extends Parent> extends TreeLeaf<P
 
     @Override
     public int childSize() {
-       return treeRoot.childSize();
+        return treeRoot.childSize();
+    }
+
+    @Override
+    public int childIndexOf(C c) {
+        return treeRoot.childIndexOf(c);
     }
 }

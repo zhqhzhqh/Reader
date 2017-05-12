@@ -38,4 +38,9 @@ public class TreeRoot<C extends Parent> implements Root<C> {
     public int childSize() {
         return cs.size();
     }
+
+    @Override
+    public int childIndexOf(C c) {
+        return cs.indexOf(c);
+    }
 }

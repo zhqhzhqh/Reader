@@ -1,5 +1,6 @@
 package com.kiss.readerlibrary.core.common;
 
+import android.graphics.Color;
 import android.graphics.Typeface;
 
 /**
@@ -29,9 +30,6 @@ public final class PageParameter {
     // 行间距
     public float lineSpacing;
 
-    // 字体
-    public Font font = new Font();
-
     // 滑动方式
     public SlideMode slideMode;
 
@@ -53,34 +51,44 @@ public final class PageParameter {
 
         public float height;
 
-        Font font;
-
-        public static Bar of(int height, Font font) {
+        public static Bar of(int height) {
             Bar bar = new Bar();
             bar.height = height;
-            bar.font = font;
             return bar;
         }
 
         public static Bar of(Bar bar) {
             Bar newBar = new Bar();
             newBar.height = bar.height;
-            newBar.font = bar.font;
             return newBar;
         }
     }
 
-    public static class Font {
+    // 字体
+    public enum Font {
 
-        Font() {
+        TEXT(Typeface.DEFAULT, 32, Color.BLACK),
+        TITLE(Typeface.DEFAULT, 32, Color.BLACK),
+        TOP(Typeface.DEFAULT, 32, Color.BLACK),
+        BOTTOM(Typeface.DEFAULT, 32, Color.BLACK);
+
+        Font(Typeface typeface, float size, int color) {
+            this.typeface = typeface;
+            this.size = size;
+            this.color = color;
         }
 
         public Typeface typeface;
 
-        public float fontSize;
+        public float size;
 
         public int color;
 
+        public void valueOf(Font font) {
+            this.typeface = font.typeface;
+            this.size = font.size;
+            this.color = font.color;
+        }
     }
 
     public enum SlideMode {

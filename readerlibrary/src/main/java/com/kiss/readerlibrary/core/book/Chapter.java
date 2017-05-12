@@ -62,11 +62,14 @@ public abstract class Chapter extends TreeLeaf<Book, Chapter> {
             MessageEvent messageEvent = new MessageEvent();
             messageEvent.data = this;
             switch (loadChapterType) {
-                case START:
-                    messageEvent.what = MessageEvent.What.START_LOAD_CHAPTER_SUCCESS;
+                case CHAPTER_INIT:
+                    messageEvent.what = MessageEvent.What.CHAPTER_INIT_LOAD_SUCCESS;
                     break;
-                case PAGE:
-                    messageEvent.what = MessageEvent.What.PAGE_LOAD_CHAPTER_SUCCESS;
+                case PAGE_INIT:
+                    messageEvent.what = MessageEvent.What.CHAPTER_PAGE_INIT_LOAD_SUCCESS;
+                    break;
+                case PAGE_JUMP:
+                    messageEvent.what = MessageEvent.What.CHAPTER_PAGE_JUMP_LOAD_SUCCESS;
                     break;
             }
             EventBusUtils.post(messageEvent);
@@ -87,9 +90,13 @@ public abstract class Chapter extends TreeLeaf<Book, Chapter> {
         int h = 0;
         h += chapterHeiht;
         Page page = new Page(this, pages.getChild(-1), pages.getChild(1));
+        boolean isContextChapter = p.pageInfo.pageContext.chapterId == p.childIndexOf(this);
         for (int i = 0, l = 0, p = 0; i < paragrahps.childSize(); i++) {
             Paragraph paragraph = paragrahps.getChild(i);
             String characters = paragraph.getCharacters();
+            if (isContextChapter && i == this.p.pageInfo.pageContext.paragraphId) {
+                this.p.pageInfo.pageContext.pageId = p;
+            }
 
             int start = -1, end = characters.length();
             while (start + 1 < end) {

@@ -15,5 +15,7 @@ public interface Child<C extends Parent> {
 
     int childSize();
 
+    int childIndexOf(C c);
+
     C getChild(int index);
 }

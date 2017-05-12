@@ -8,4 +8,8 @@ package com.kiss.readerlibrary.core.common;
 public class PageContext {
 
     public int chapterId;
+
+    public int paragraphId;
+
+    public int pageId;
 }

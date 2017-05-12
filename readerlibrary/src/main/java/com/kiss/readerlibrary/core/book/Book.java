@@ -17,7 +17,7 @@ public abstract class Book extends TreeRoot<Chapter> {
 
     private ExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
 
-    public Chapter currentChapter;
+    private Chapter currentChapter;
 
     public BookInfo bookInfo;
 
