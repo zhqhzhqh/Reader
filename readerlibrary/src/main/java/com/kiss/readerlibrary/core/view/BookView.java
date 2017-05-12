@@ -130,6 +130,8 @@ public class BookView extends SurfaceView implements SurfaceHolder.Callback, Boo
 
     public class EventGestureRecognition {
 
+        private EventDispatcher eventDispatcher = new EventDispatcher();
+
         private PositionXY downPosition = new PositionXY();
 
         private long downTime;
@@ -138,11 +140,10 @@ public class BookView extends SurfaceView implements SurfaceHolder.Callback, Boo
 
         // TODO: 2017/5/12 pixtutils
         private float moveDistanceX = 35;
+
         private float moveDistanceY = 35;
 
         private float upCount = 0;
-
-        private EventDispatcher eventDispatcher = new EventDispatcher();
 
         private Runnable downRunnable = new Runnable() {
             @Override
@@ -152,6 +153,7 @@ public class BookView extends SurfaceView implements SurfaceHolder.Callback, Boo
                 }
             }
         };
+        
         private Runnable upRunnable = new Runnable() {
             @Override
             public void run() {
